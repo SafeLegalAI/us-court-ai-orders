@@ -81,6 +81,17 @@ def categories(r: dict) -> list[str]:
     return cats or ["disclosure-filings"]
 
 
+HONORIFIC = re.compile(r"^(?:The\s+)?(?:Hon(?:ou?rable)?\.?\s+)?(?:Chief\s+|Senior\s+|Presiding\s+)?(?:U\.S\.\s+)?(?:District\s+|Magistrate\s+|Bankruptcy\s+|Circuit\s+)?(?:Judge|Justice|Magistrate)\s+", re.I)
+
+
+def judge_name(j: str) -> str:
+    return HONORIFIC.sub("", j).strip()
+
+
+def real_archive(u: str | None) -> str | None:
+    return u if u and re.match(r"^https://web\.archive\.org/web/\d{8,14}/", u) else None
+
+
 def short_court(court: str) -> str:
     return re.sub(r"^(United States|U\.S\.) (District|Bankruptcy) Court for the ", "", court).replace("United States Court of Appeals for the ", "")
 
@@ -121,8 +132,8 @@ def main():
             summary = f"{summary} The instrument was posted on the court's website when SafeLegalAI read it on {r['fetched_at']}; the court does not state whether it has been amended or withdrawn."
         rec = {
             "title": DQ(r["title"]),
-            "body": DQ(r["court"] if not r.get("judge") else f"{r['court']} — Judge {r['judge']}"),
-            "bodyShort": DQ(short_court(r["court"]) if not r.get("judge") else f"{short_court(r['court'])} (Judge {r['judge'].split()[-1]})"),
+            "body": DQ(r["court"] if not r.get("judge") else f"{r['court']} — Judge {judge_name(r['judge'])}"),
+            "bodyShort": DQ(short_court(r["court"]) if not r.get("judge") else f"{short_court(r['court'])} (Judge {judge_name(r['judge']).split()[-1]})"),
             "jurisdiction": "us-federal" if fed else "us-state",
             **({"region": DQ(r["state"])} if r.get("state") else {}),
             "country": DQ("US"),
@@ -131,11 +142,11 @@ def main():
             "appliesTo": sorted({APPLIES_MAP[x] for x in r["applies_to"]}),
             "requirements": requirements(r["obligations"]),
             **({"effectiveDate": r["effective_date"] if len(r["effective_date"]) == 10 else f"{r['effective_date']}-01"} if r.get("effective_date") else {}),
-            "versions": [{"version": DQ("As posted (undated)" if undated else ("Amended" if r.get("amended_date") else "Original")), "date": vdate, "url": DQ(r["source_url"]), **({"archiveUrl": DQ(r["archive_url"])} if r.get("archive_url") else {})}],
+            "versions": [{"version": DQ("As posted (undated)" if undated else ("Amended" if r.get("amended_date") else "Original")), "date": vdate, "url": DQ(r["source_url"]), **({"archiveUrl": DQ(real_archive(r["archive_url"]))} if real_archive(r.get("archive_url")) else {})}],
             "summary": DQ(summary),
             "keyProvisions": [DQ(k) for k in r["key_provisions"]],
             "relatedIncidents": [],
-            "sources": [{"label": DQ(f"{short_court(r['court'])} — {r['title']} (primary, {r['source_type']})"), "url": DQ(r["source_url"])}] + ([{"label": DQ("Archived copy (Wayback Machine)"), "url": DQ(r["archive_url"])}] if r.get("archive_url") else []) + [{"label": DQ("SafeLegalAI us-court-ai-orders dataset row (coding, text excerpt, provenance)"), "url": DQ(f"https://github.com/SafeLegalAI/us-court-ai-orders/blob/main/data/orders.jsonl")}],
+            "sources": [{"label": DQ(f"{short_court(r['court'])} — {r['title']} (primary, {r['source_type']})"), "url": DQ(r["source_url"])}] + ([{"label": DQ("Archived copy (Wayback Machine)"), "url": DQ(real_archive(r["archive_url"]))}] if real_archive(r.get("archive_url")) else []) + [{"label": DQ("SafeLegalAI us-court-ai-orders dataset row (coding, text excerpt, provenance)"), "url": DQ(f"https://github.com/SafeLegalAI/us-court-ai-orders/blob/main/data/orders.jsonl")}],
             "categories": categories(r),
             "lastVerified": r["fetched_at"],
             "verified": False,

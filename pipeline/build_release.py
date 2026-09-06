@@ -41,8 +41,9 @@ def read_jsonl(p: Path):
 def validate(r: dict) -> list[str]:
     errs = []
     props = SCHEMA["properties"]
+    nullable = {k for k, spec in props.items() if isinstance(spec.get("type"), list) and "null" in spec["type"]}
     for k in SCHEMA["required"]:
-        if k not in r or r[k] in (None, "", []):
+        if k not in r or (r[k] in ("", []) or (r[k] is None and k not in nullable)):
             errs.append(f"missing {k}")
     for k, spec in props.items():
         if k not in r or r[k] is None:

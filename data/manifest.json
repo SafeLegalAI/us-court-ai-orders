@@ -1,0 +1,48 @@
+{
+  "dataset": "SafeLegalAI \u2014 US court AI orders",
+  "version": "0.1.0",
+  "built": "2026-09-06",
+  "canonical": "https://safelegalai.com/regulation/us-court-ai-orders",
+  "repository": "https://github.com/SafeLegalAI/us-court-ai-orders",
+  "license_data": "CC BY 4.0 (SafeLegalAI, Cognesio LLP); the court instruments themselves are public domain",
+  "stats": {
+    "rows": 222,
+    "rejected": 0,
+    "by_verification": {
+      "fetched-and-read": 206,
+      "page-read-no-document": 2,
+      "link-only": 14
+    },
+    "by_document_type": {
+      "proposed-rule": 7,
+      "policy": 14,
+      "notice": 15,
+      "standing-order": 86,
+      "administrative-order": 18,
+      "local-rule": 21,
+      "general-order": 6,
+      "judge-requirements-page": 52,
+      "practice-direction": 3
+    },
+    "by_court_level": {
+      "federal-specialty": 10,
+      "federal-appellate": 2,
+      "federal-district": 83,
+      "state-supreme": 13,
+      "state-judiciary-wide": 17,
+      "state-trial": 68,
+      "federal-bankruptcy": 5,
+      "federal-magistrate": 20,
+      "territorial": 2,
+      "state-appellate": 2
+    },
+    "states": 42,
+    "courts": 131,
+    "judge_specific": 155,
+    "disclose_required": 117,
+    "certify_required": 115,
+    "prohibit_drafting": 5,
+    "warning_only": 27
+  },
+  "contentSha256": "320ff8ddabaeab585b74430b980083b0712c10631d50bd0e30dd7639a10c419b"
+}
