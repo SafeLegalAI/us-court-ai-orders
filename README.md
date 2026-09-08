@@ -13,6 +13,8 @@ tags:
   - generative-ai
   - court-rules
   - ai-governance
+  - ai-regulation
+  - ai-safety
   - safelegalai
 configs:
   - config_name: orders
@@ -24,11 +26,9 @@ configs:
 
 # US court AI orders
 
-> Part of the [SafeLegalAI datasets](https://safelegalai.com/datasets) — CC BY 4.0, mirrored on [Hugging Face](https://huggingface.co/datasets/safelegalaidata/us-court-ai-orders). Every row links to its record page and its primary source. Found an error in a row? [Open an issue](https://github.com/SafeLegalAI/us-court-ai-orders/issues/new?template=row-error.yml) or use [safelegalai.com/report](https://safelegalai.com/report).
-
 **222 official instruments of United States courts on the use of artificial intelligence in proceedings — judge-specific standing orders, court-wide general and administrative orders, local rules, practice directions, judiciary policies — across 42 states and territories and 131 courts, each coded from its primary text.**
 
-Built 2026-09-06 by [SafeLegalAI](https://safelegalai.com) (Cognesio LLP). Canonical pages: [safelegalai.com/regulation](https://safelegalai.com/regulation) (the versioned regulation tracker) · repository and issues: [https://github.com/SafeLegalAI/us-court-ai-orders](https://github.com/SafeLegalAI/us-court-ai-orders).
+Built 2026-09-08 by [SafeLegalAI](https://safelegalai.com) (Cognesio LLP). Canonical pages: [safelegalai.com/regulation](https://safelegalai.com/regulation) (the versioned regulation tracker) · repository and issues: [https://github.com/SafeLegalAI/us-court-ai-orders](https://github.com/SafeLegalAI/us-court-ai-orders).
 
 ## What a row is
 
@@ -102,9 +102,26 @@ Coding is conservative: a value is `not-addressed` unless the text addresses it;
 
 Court orders, rules and opinions of United States courts are public domain (17 U.S.C. § 105; *Georgia v. Public.Resource.Org, Inc.* (2020)). The compilation and coding are **CC BY 4.0** — attribute *SafeLegalAI (safelegalai.com), published by Cognesio LLP*. No warranty; the linked court documents are the record.
 
+## Uses
+
+**Suited to:** counting and comparing what the record shows (by court, jurisdiction, date, actor, outcome, status); building watch-lists and alerts from `source_url`/`fetched_at`; grounding retrieval or summarisation on cited primary documents; teaching and library guides that need a dated, sourced list.
+
+**Not suited to:** ranking products, people or courts; inferring prevalence beyond what a court or regulator has itself stated; any use that treats a coding column as a finding of fact or law. Where a row names a person or organisation it does so as they appear in a public document; anyone named may request a correction or right of reply at https://safelegalai.com/report.
+
 ## Cite
 
-> SafeLegalAI (Cognesio LLP), "US court AI orders", v0.1.0, 2026-09-06. https://huggingface.co/datasets/safelegalaidata/us-court-ai-orders — CC BY 4.0.
+> SafeLegalAI (Cognesio LLP), "US court AI orders", v0.1.0, 2026-09-08. https://huggingface.co/datasets/safelegalaidata/us-court-ai-orders — CC BY 4.0.
+
+```bibtex
+@dataset{safelegalai_us_court_ai_orders_0_1_0,
+  title        = {US court AI orders},
+  author       = {{SafeLegalAI (Cognesio LLP)}},
+  year         = {2026},
+  version      = {0.1.0},
+  url          = {https://huggingface.co/datasets/safelegalaidata/us-court-ai-orders},
+  note         = {Data CC BY 4.0. Built 2026-09-08. Canonical: https://safelegalai.com}
+}
+```
 
 ## Disclaimer and notices
 
@@ -116,7 +133,7 @@ Provided "as is", without warranty of any kind (CC BY 4.0 §5; Apache-2.0 §7). 
 {
   "dataset": "SafeLegalAI \u2014 US court AI orders",
   "version": "0.1.0",
-  "built": "2026-09-06",
+  "built": "2026-09-08",
   "canonical": "https://safelegalai.com/regulation/us-court-ai-orders",
   "repository": "https://github.com/SafeLegalAI/us-court-ai-orders",
   "license_data": "CC BY 4.0 (SafeLegalAI, Cognesio LLP); the court instruments themselves are public domain",

@@ -1,7 +1,7 @@
 {
   "dataset": "SafeLegalAI \u2014 US court AI orders",
   "version": "0.1.0",
-  "built": "2026-09-06",
+  "built": "2026-09-08",
   "canonical": "https://safelegalai.com/regulation/us-court-ai-orders",
   "repository": "https://github.com/SafeLegalAI/us-court-ai-orders",
   "license_data": "CC BY 4.0 (SafeLegalAI, Cognesio LLP); the court instruments themselves are public domain",

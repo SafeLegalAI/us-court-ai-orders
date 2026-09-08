@@ -190,6 +190,8 @@ tags:
   - generative-ai
   - court-rules
   - ai-governance
+  - ai-regulation
+  - ai-safety
   - safelegalai
 configs:
   - config_name: orders
@@ -235,9 +237,26 @@ Coding is conservative: a value is `not-addressed` unless the text addresses it;
 
 Court orders, rules and opinions of United States courts are public domain (17 U.S.C. § 105; *Georgia v. Public.Resource.Org, Inc.* (2020)). The compilation and coding are **CC BY 4.0** — attribute *SafeLegalAI ({SITE.removeprefix("https://")}), published by Cognesio LLP*. No warranty; the linked court documents are the record.
 
+## Uses
+
+**Suited to:** counting and comparing what the record shows (by court, jurisdiction, date, actor, outcome, status); building watch-lists and alerts from `source_url`/`fetched_at`; grounding retrieval or summarisation on cited primary documents; teaching and library guides that need a dated, sourced list.
+
+**Not suited to:** ranking products, people or courts; inferring prevalence beyond what a court or regulator has itself stated; any use that treats a coding column as a finding of fact or law. Where a row names a person or organisation it does so as they appear in a public document; anyone named may request a correction or right of reply at https://safelegalai.com/report.
+
 ## Cite
 
 > SafeLegalAI (Cognesio LLP), "US court AI orders", v{manifest['version']}, {today}. https://huggingface.co/datasets/{HF_ORG}/{HF_REPO} — CC BY 4.0.
+
+```bibtex
+@dataset{{safelegalai_us_court_ai_orders_{manifest['version'].replace('.', '_')},
+  title        = {{US court AI orders}},
+  author       = {{{{SafeLegalAI (Cognesio LLP)}}}},
+  year         = {{{today[:4]}}},
+  version      = {{{manifest['version']}}},
+  url          = {{https://huggingface.co/datasets/{HF_ORG}/{HF_REPO}}},
+  note         = {{Data CC BY 4.0. Built {today}. Canonical: https://safelegalai.com}}
+}}
+```
 
 ## Disclaimer and notices
 
