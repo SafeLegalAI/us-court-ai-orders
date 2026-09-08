@@ -24,6 +24,8 @@ configs:
 
 # US court AI orders
 
+> Part of the [SafeLegalAI datasets](https://safelegalai.com/datasets) — CC BY 4.0, mirrored on [Hugging Face](https://huggingface.co/datasets/safelegalaidata/us-court-ai-orders). Every row links to its record page and its primary source. Found an error in a row? [Open an issue](https://github.com/SafeLegalAI/us-court-ai-orders/issues/new?template=row-error.yml) or use [safelegalai.com/report](https://safelegalai.com/report).
+
 **222 official instruments of United States courts on the use of artificial intelligence in proceedings — judge-specific standing orders, court-wide general and administrative orders, local rules, practice directions, judiciary policies — across 42 states and territories and 131 courts, each coded from its primary text.**
 
 Built 2026-09-06 by [SafeLegalAI](https://safelegalai.com) (Cognesio LLP). Canonical pages: [safelegalai.com/regulation](https://safelegalai.com/regulation) (the versioned regulation tracker) · repository and issues: [https://github.com/SafeLegalAI/us-court-ai-orders](https://github.com/SafeLegalAI/us-court-ai-orders).
